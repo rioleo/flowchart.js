@@ -630,7 +630,7 @@
   
             if (hasSymbolUnder) {
               self.next.setX(symb.getX() + symb.width + lineLength);
-              shift();
+              
             }
           })();
   
@@ -643,7 +643,7 @@
         var topPoint = this.next.getTop();
   
         if (!this.next.isPositioned) {
-          this.next.shiftY(this.getY() + this.height + lineLength);
+          this.next.shiftY(this.getY() + lineLength);
           this.next.setX(bottomPoint.x - this.next.width/2);
           this.next.isPositioned = true;
   
@@ -895,7 +895,7 @@
     }
   };
   function Start(chart, options) {
-    var symbol = chart.paper.rect(0, 0, 0, 0, 20);
+    var symbol = chart.paper.rect(0, 0, 0, 0, 10);
     options = options || {};
     options.text = options.text || 'Start';
     Symbol.call(this, chart, options, symbol);
@@ -944,10 +944,12 @@
     Symbol.call(this, chart, options, symbol);
   
     symbol.attr({
-      width: this.text.getBBox().width + 4 * this.getAttr('text-margin')
+      width: this.text.getBBox().width + 4 * this.getAttr('text-margin'),
+      height: this.text.getBBox().height
     });
   
     this.text.attr({
+      'y': this.text.getBBox().height-20,
       'x': 2 * this.getAttr('text-margin')
     });
   
@@ -1162,8 +1164,8 @@
           }
   
           if (hasSymbolUnder) {
-            self.right_symbol.setX(symb.getX() + symb.width + lineLength);
-            shift();
+            self.right_symbol.setX(symb.getX() + lineLength);
+           
           }
         })();
   
